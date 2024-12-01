@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -31,7 +32,24 @@ public class Main {
 
         Collections.sort(list1);
         Collections.sort(list2);
-        List<Integer> distance= new ArrayList<>();
+
+        List<Integer> similarityScore  = new ArrayList<>();
+        Integer result = 0;
+        Integer count = 0;
+        for(Integer x : list1){
+
+            for(Integer y : list2){
+                if(Objects.equals(x, y)){
+                    count ++;
+                }
+            }
+            similarityScore.add(count);
+            result = result + (x * count);
+            count = 0;
+        }
+
+        //Part One
+        /*List<Integer> distance= new ArrayList<>();
         Integer result = 0;
 
         for(int i = 0 ; i < list1.size() ; i++) {
@@ -39,7 +57,7 @@ public class Main {
                 distance.add(list2.get(i) - list1.get(i));
             } else distance.add(list1.get(i) - list2.get(i));
             result = result + distance.get(i);
-        }
+        }*/
         System.out.println(result);
     }
 }
